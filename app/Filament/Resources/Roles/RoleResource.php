@@ -42,8 +42,6 @@ class RoleResource extends Resource
     use HasShieldFormComponents;
 
     protected static ?string $recordTitleAttribute = 'name';
-    protected static string|UnitEnum|null $navigationGroup = 'Settings';
-    protected static ?int $navigationSort = 999;
 
     #[Override]
     public static function form(Schema $schema): Schema

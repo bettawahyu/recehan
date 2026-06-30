@@ -9,7 +9,7 @@ use Filament\Widgets\ChartWidget;
 
 class GrafikKeuangan extends ChartWidget
 {
-    protected ?string $heading = 'Grafik Keuangan';
+    protected ?string $heading = 'Grafik Keuangan Total';
 
     protected int|string|array $columnSpan = 1;
 
@@ -29,8 +29,8 @@ class GrafikKeuangan extends ChartWidget
                     ],
 
                     'borderColor' => [
-                        '#16a34a',
-                        '#dc2626',
+                        '#10b981',
+                        '#f43f5e',
                     ],
 
                     'borderWidth' => 2,
