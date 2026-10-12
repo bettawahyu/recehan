@@ -16,12 +16,12 @@ class PemasukanForm
         return $schema
             ->components([
                 TextInput::make('nomor_transaksi')
-                ->label('Nomor Transaksi')
-                // ->default(fn () => NomorTransaksiHelper::pemasukan())
-                ->placeholder('Akan dibuat otomatis saat data disimpan')
-                ->disabled()
-                ->maxLength(50)
-                ->dehydrated(),
+                    ->label('Nomor Transaksi')
+                    // ->default(fn () => NomorTransaksiHelper::pemasukan())
+                    ->placeholder('Akan dibuat otomatis saat data disimpan')
+                    ->disabled()
+                    ->maxLength(50)
+                    ->dehydrated(),
                 DatePicker::make('tanggal')
                     ->label('Tanggal')
                     ->required()

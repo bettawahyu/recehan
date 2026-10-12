@@ -18,11 +18,11 @@ class PengeluaranForm
 
                 TextInput::make('nomor_transaksi')
                     ->label('Nomor Transaksi')
-                    ->disabled()
-                    // ->default(fn () => NomorTransaksiHelper::pengeluaran())
+                    ->readOnly()
+                    ->default(fn () => NomorTransaksiHelper::pengeluaran())
                     ->placeholder('Akan dibuat otomatis saat data disimpan')
-                    ->dehydrated()
-                    ->maxLength(50),
+                    ->maxLength(50)
+                    ->dehydrated(),
                 DatePicker::make('tanggal')
                     ->label('Tanggal')
                     ->required()

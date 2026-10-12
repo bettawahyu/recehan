@@ -23,7 +23,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
             <!-- Logo -->
             <div class="flex items-center gap-1.5 sm:gap-2">
-                <span class="text-xl sm:text-2xl font-bold text-emerald-600 tracking-tight">Recehan.</span>
+                <span class="text-xl sm:text-2xl font-bold text-emerald-600 tracking-tight">💴 Recehan.</span>
                 <span class="text-[10px] sm:text-xs bg-emerald-100 text-emerald-800 font-medium px-2 py-0.5 rounded-full whitespace-nowrap">Web & Mobile</span>
             </div>
 
@@ -40,7 +40,7 @@
     </header>
 
     <!-- Main Content -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-20 flex-grow flex items-center">
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-20 grow flex items-center">
         <!-- Hero Section -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center w-full">
             
@@ -65,7 +65,7 @@
             <!-- Ilustrasi / Visual Sederhana (Mockup UI) -->
             <div class="relative flex justify-center lg:justify-end order-1 lg:order-2 w-full max-w-md mx-auto lg:max-w-none">
                 <!-- Background dekoratif -->
-                <div class="absolute inset-0 bg-gradient-to-tr from-emerald-200 to-teal-100 rounded-3xl filter blur-3xl opacity-30 -z-10 transform scale-95"></div>
+                <div class="absolute inset-0 bg-linear-to-tr from-emerald-200 to-teal-100 rounded-3xl filter blur-3xl opacity-30 -z-10 transform scale-95"></div>
                 
                 <!-- Box simulasi tampilan UI Aplikasi (Sekarang Full Responsive) -->
                 <div class="bg-white p-5 sm:p-6 rounded-2xl shadow-xl border border-slate-100 w-full space-y-4 sm:space-y-6 transform hover:scale-[1.01] transition-transform duration-300">
