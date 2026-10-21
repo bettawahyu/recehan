@@ -24,7 +24,7 @@ class PemasukanResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedCurrencyYen;
 
-    protected static ?string $recordTitleAttribute = '"Pemasukan"';
+    protected static ?string $recordTitleAttribute = 'nomor_transaksi';
 
     // protected static ?string $navigationGroup = 'Keuangan';
 

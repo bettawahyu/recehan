@@ -35,6 +35,7 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('dasbor')
             ->login()
+            ->databaseTransactions()
             ->colors([
                 'primary' => Color::Emerald,
             ])

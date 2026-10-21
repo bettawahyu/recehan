@@ -7,7 +7,6 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Schemas\Schema;
-use App\Helpers\NomorTransaksiHelper;
 
 class PemasukanForm
 {
@@ -21,7 +20,7 @@ class PemasukanForm
                     ->placeholder('Akan dibuat otomatis saat data disimpan')
                     ->disabled()
                     ->maxLength(50)
-                    ->dehydrated(),
+                    ->dehydrated(false),
                 DatePicker::make('tanggal')
                     ->label('Tanggal')
                     ->required()
@@ -35,6 +34,7 @@ class PemasukanForm
                 TextInput::make('jumlah')
                     ->label('Jumlah')
                     ->numeric()
+                    ->minValue(1)
                     ->required()
                     ->prefix('Rp'),
                 // Select::make('sumber')
