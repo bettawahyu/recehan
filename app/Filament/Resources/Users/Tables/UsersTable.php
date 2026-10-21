@@ -39,9 +39,6 @@ class UsersTable
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('foto')
-                    ->toggleable(isToggledHiddenByDefault: true)
-                    ->searchable(),
                 IconColumn::make('is_active')
                     ->boolean(),
                 TextColumn::make('last_login_at')

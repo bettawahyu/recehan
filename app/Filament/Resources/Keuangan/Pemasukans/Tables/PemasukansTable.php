@@ -34,10 +34,8 @@ class PemasukansTable
                     ->date('d F Y')
                     ->searchable()
                     ->sortable(),
-                TextColumn::make('kategori_pemasukan_id')
+                TextColumn::make('kategori.nama')
                     ->label('Kategori')
-                    ->getStateUsing(fn ($record) => $record->kategori?->nama)
-                    ->numeric()
                     ->searchable()
                     ->visibleFrom('md')
                     ->sortable(),
