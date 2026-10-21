@@ -7,6 +7,7 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Schemas\Schema;
+use Illuminate\Database\Eloquent\Builder;
 
 class PengeluaranForm
 {
@@ -27,7 +28,16 @@ class PengeluaranForm
                     ->default(now()),
                 Select::make('kategori_pengeluaran_id')
                     ->label('Kategori Pengeluaran')
-                    ->relationship('kategori', 'nama')
+                    ->relationship(
+                        'kategori',
+                        'nama',
+                        // Hanya kategori aktif, kecuali kategori yang sudah terpasang di transaksi ini.
+                        fn (Builder $query, $record) => $query->where(
+                            fn (Builder $query) => $query
+                                ->where('is_active', true)
+                                ->when($record, fn (Builder $query) => $query->orWhere('id', $record->kategori_pengeluaran_id))
+                        )
+                    )
                     ->searchable()
                     ->preload()
                     ->required(),

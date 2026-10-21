@@ -25,11 +25,13 @@ class GrafikBulanAktif extends ChartWidget
                 [
                     'data' => [
                         Pemasukan::query()
+                            ->where('status', 'final')
                             ->whereMonth('tanggal', now()->month)
                             ->whereYear('tanggal', now()->year)
                             ->sum('jumlah'),
 
                         Pengeluaran::query()
+                            ->where('status', 'final')
                             ->whereMonth('tanggal', now()->month)
                             ->whereYear('tanggal', now()->year)
                             ->sum('jumlah'),

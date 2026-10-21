@@ -50,6 +50,16 @@ class User extends Authenticatable implements FilamentUser
         ];
     }
 
+    protected static function booted(): void
+    {
+        // User yang dinonaktifkan langsung kehilangan akses API dari aplikasi mobile.
+        static::updated(function (User $user) {
+            if ($user->wasChanged('is_active') && ! $user->is_active) {
+                $user->tokens()->update(['revoked' => true]);
+            }
+        });
+    }
+
     public function canAccessPanel(Panel $panel): bool
     {
         return $this->is_active !== false;

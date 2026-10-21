@@ -19,8 +19,8 @@ class GrafikKeuangan extends ChartWidget
             'datasets' => [
                 [
                     'data' => [
-                        Pemasukan::sum('jumlah'),
-                        Pengeluaran::sum('jumlah'),
+                        Pemasukan::where('status', 'final')->sum('jumlah'),
+                        Pengeluaran::where('status', 'final')->sum('jumlah'),
                     ],
 
                     'backgroundColor' => [

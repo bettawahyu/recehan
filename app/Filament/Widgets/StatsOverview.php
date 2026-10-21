@@ -11,9 +11,9 @@ class StatsOverview extends StatsOverviewWidget
 {
 protected function getStats(): array
 {
-    $totalPemasukan = Pemasukan::sum('jumlah');
+    $totalPemasukan = Pemasukan::where('status', 'final')->sum('jumlah');
 
-    $totalPengeluaran = Pengeluaran::sum('jumlah');
+    $totalPengeluaran = Pengeluaran::where('status', 'final')->sum('jumlah');
 
     $saldo = $totalPemasukan - $totalPengeluaran;
 
