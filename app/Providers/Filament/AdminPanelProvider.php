@@ -7,7 +7,6 @@ use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
-use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Navigation\NavigationGroup;
@@ -21,8 +20,9 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use App\Filament\Widgets\StatsOverview;
-use App\Filament\Widgets\GrafikKeuangan;
-use App\Filament\Widgets\GrafikBulanAktif;
+use App\Filament\Widgets\GrafikArusKas;
+use App\Filament\Widgets\GrafikKategoriPemasukan;
+use App\Filament\Widgets\GrafikKategoriPengeluaran;
 use App\Filament\Widgets\TransaksiBulanAktif;
 
 
@@ -35,15 +35,14 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('dasbor')
             ->login()
+            ->brandName('Recehan')
             ->databaseTransactions()
             ->colors([
                 'primary' => Color::Emerald,
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
+            // Dasbor kustom ada di app/Filament/Pages/Dashboard.php dan ditemukan otomatis di sini.
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
-            ->pages([
-                Dashboard::class,
-            ])
             ->navigationGroups([
                 NavigationGroup::make()
                     ->label('Kategori'),
@@ -54,8 +53,9 @@ class AdminPanelProvider extends PanelProvider
             // ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\Filament\Widgets')
             ->widgets([
                 StatsOverview::class,
-                GrafikKeuangan::class,
-                GrafikBulanAktif::class,
+                GrafikArusKas::class,
+                GrafikKategoriPemasukan::class,
+                GrafikKategoriPengeluaran::class,
                 TransaksiBulanAktif::class,
             ])
             ->middleware([
