@@ -3,7 +3,6 @@
 namespace App\Filament\Resources\Keuangan\Pengeluarans\Schemas;
 
 use App\Models\Keuangan\Pengeluaran;
-use App\Models\User;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Schema;
 
@@ -43,19 +42,12 @@ class PengeluaranInfolist
                         'final' => 'Difinalisasi',
                     })
                     ->badge(),
-                TextEntry::make('created_by')
+                TextEntry::make('creator.name')
                     ->label('Dibuat Oleh')
-                    ->state(function ($record) {
-                        $user = User::find($record->created_by); 
-                        return $user ? $user->name : 'N/A';
-                    }),
-                TextEntry::make('updated_by')
+                    ->placeholder('N/A'),
+                TextEntry::make('updater.name')
                     ->label('Diperbarui Oleh')
-                    ->state(function ($record) {
-                        $user = User::find($record->updated_by); 
-                        return $user ? $user->name : 'N/A';
-                    })
-                    ->placeholder('-'),
+                    ->placeholder('N/A'),
                 TextEntry::make('created_at')
                     ->dateTime()
                     ->placeholder('-'),

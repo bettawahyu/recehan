@@ -34,6 +34,7 @@ return new class extends Migration
                 'no_hp',
                 'alamat',
                 'foto',
+                'avatar_url',
                 'is_active',
                 'last_login_at'
             ]);

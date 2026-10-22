@@ -31,11 +31,6 @@ class AuthService
             ]);
         }
 
-        // Update login terakhir
-        $user->update([
-            'last_login_at' => now(),
-        ]);
-
         // Buat token Passport
         $token = $user->createToken('Flutter')->accessToken;
 

@@ -27,7 +27,7 @@ class KategoriPengeluaranResource extends Resource
 
     protected static string|UnitEnum|null $navigationGroup = 'Kategori';
 
-    protected static ?string $recordTitleAttribute = '"Kategori Pengeluaran"';
+    protected static ?string $recordTitleAttribute = 'nama';
 
     protected static ?string $navigationLabel = 'Pengeluaran';
 

@@ -22,6 +22,7 @@ class UserForm
                     ->maxLength(15),
                 TextInput::make('email')
                     ->label('Email address')
+                    ->unique(ignoreRecord: true)
                     ->readonly(fn (string $operation) => $operation === 'edit')
                     ->email()
                     ->helperText('Email address tidak dapat diubah setelah dibuat')
@@ -46,6 +47,11 @@ class UserForm
                     ->searchable()
                     ->preload()
                     ->required(),
+                Toggle::make('is_active')
+                    ->label('Status Aktif')
+                    ->helperText('User nonaktif tidak bisa login ke panel maupun aplikasi mobile')
+                    ->default(true)
+                    ->disabled(fn ($record) => $record?->is(auth()->user())),
             ]);
     }
 }

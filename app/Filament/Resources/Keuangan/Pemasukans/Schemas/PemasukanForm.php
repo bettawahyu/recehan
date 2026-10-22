@@ -7,7 +7,7 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Schemas\Schema;
-use App\Helpers\NomorTransaksiHelper;
+use Illuminate\Database\Eloquent\Builder;
 
 class PemasukanForm
 {
@@ -21,20 +21,30 @@ class PemasukanForm
                     ->placeholder('Akan dibuat otomatis saat data disimpan')
                     ->disabled()
                     ->maxLength(50)
-                    ->dehydrated(),
+                    ->dehydrated(false),
                 DatePicker::make('tanggal')
                     ->label('Tanggal')
                     ->required()
                     ->default(now()),
                 Select::make('kategori_pemasukan_id')
                     ->label('Kategori Pemasukan')
-                    ->relationship('kategori', 'nama')
+                    ->relationship(
+                        'kategori',
+                        'nama',
+                        // Hanya kategori aktif, kecuali kategori yang sudah terpasang di transaksi ini.
+                        fn (Builder $query, $record) => $query->where(
+                            fn (Builder $query) => $query
+                                ->where('is_active', true)
+                                ->when($record, fn (Builder $query) => $query->orWhere('id', $record->kategori_pemasukan_id))
+                        )
+                    )
                     ->searchable()
                     ->preload()
                     ->required(),
                 TextInput::make('jumlah')
                     ->label('Jumlah')
                     ->numeric()
+                    ->minValue(1)
                     ->required()
                     ->prefix('Rp'),
                 // Select::make('sumber')

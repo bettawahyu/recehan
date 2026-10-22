@@ -12,7 +12,7 @@ class TransaksiHarian extends Model
 
     public $incrementing = false;
 
-    protected $keyType = 'string';
+    protected $keyType = 'int';
 
     public $timestamps = false;
 }
