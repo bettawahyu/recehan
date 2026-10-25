@@ -35,11 +35,9 @@ class PengeluaransTable
                     ->searchable()
                     ->date('d M Y')
                     ->sortable(),
-                TextColumn::make('kategori_pengeluaran_id')
+                TextColumn::make('kategori.nama')
                     ->label('Kategori')
-                    ->getStateUsing(fn ($record) => $record->kategori?->nama)
                     ->searchable()
-                    ->numeric()
                     ->visibleFrom('md')
                     ->sortable(),
                 TextColumn::make('jumlah')

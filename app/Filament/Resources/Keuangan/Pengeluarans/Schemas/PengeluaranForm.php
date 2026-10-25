@@ -7,7 +7,7 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Schemas\Schema;
-use App\Helpers\NomorTransaksiHelper;
+use Illuminate\Database\Eloquent\Builder;
 
 class PengeluaranForm
 {
@@ -18,18 +18,26 @@ class PengeluaranForm
 
                 TextInput::make('nomor_transaksi')
                     ->label('Nomor Transaksi')
-                    ->readOnly()
-                    ->default(fn () => NomorTransaksiHelper::pengeluaran())
                     ->placeholder('Akan dibuat otomatis saat data disimpan')
+                    ->disabled()
                     ->maxLength(50)
-                    ->dehydrated(),
+                    ->dehydrated(false),
                 DatePicker::make('tanggal')
                     ->label('Tanggal')
                     ->required()
                     ->default(now()),
                 Select::make('kategori_pengeluaran_id')
                     ->label('Kategori Pengeluaran')
-                    ->relationship('kategori', 'nama')
+                    ->relationship(
+                        'kategori',
+                        'nama',
+                        // Hanya kategori aktif, kecuali kategori yang sudah terpasang di transaksi ini.
+                        fn (Builder $query, $record) => $query->where(
+                            fn (Builder $query) => $query
+                                ->where('is_active', true)
+                                ->when($record, fn (Builder $query) => $query->orWhere('id', $record->kategori_pengeluaran_id))
+                        )
+                    )
                     ->searchable()
                     ->preload()
                     ->required(),
@@ -37,6 +45,7 @@ class PengeluaranForm
                     ->label('Jumlah')
                     ->required()
                     ->numeric()
+                    ->minValue(1)
                     ->prefix('Rp'),
                 TextInput::make('tujuan')
                     ->label('Tujuan')

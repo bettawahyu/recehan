@@ -16,6 +16,7 @@ use Filament\Support\Icons\Heroicon;
 
 use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Event;
+use Laravel\Passport\Passport;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -35,6 +36,10 @@ class AppServiceProvider extends ServiceProvider
         //
         Pemasukan::observe(PemasukanObserver::class);
         Pengeluaran::observe(PengeluaranObserver::class);
+
+        // Token login aplikasi mobile berlaku 30 hari, setelah itu user login ulang.
+        Passport::personalAccessTokensExpireIn(now()->addDays(30));
+
         LanguageSwitch::configureUsing(function (LanguageSwitch $switch) {
             $switch->
             locales(['id', 'en', 'fr'])

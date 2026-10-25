@@ -59,7 +59,8 @@ class KategoriPengeluaransTable
             ->toolbarActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
-                    ForceDeleteBulkAction::make(),
+                    ForceDeleteBulkAction::make()
+                        ->authorizeIndividualRecords('forceDelete'),
                     RestoreBulkAction::make(),
                 ]),
             ]);

@@ -49,7 +49,9 @@ class KategoriPemasukanPolicy
 
     public function forceDelete(AuthUser $authUser, KategoriPemasukan $kategoriPemasukan): bool
     {
-        return $authUser->can('ForceDelete:KategoriPemasukan');
+        // Kategori yang masih dipakai transaksi tidak boleh dihapus permanen (foreign key).
+        return $authUser->can('ForceDelete:KategoriPemasukan')
+            && ! $kategoriPemasukan->pemasukan()->withTrashed()->exists();
     }
 
     public function forceDeleteAny(AuthUser $authUser): bool

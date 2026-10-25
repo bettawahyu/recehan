@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use App\Helpers\NomorTransaksiHelper;
 use App\Models\Keuangan\Pengeluaran;
 
 class PengeluaranObserver
@@ -15,6 +16,10 @@ class PengeluaranObserver
     {
         if (auth()->check()) {
             $pengeluaran->created_by = auth()->id();
+        }
+
+        if (blank($pengeluaran->nomor_transaksi)) {
+            $pengeluaran->nomor_transaksi = NomorTransaksiHelper::pengeluaran($pengeluaran->tanggal);
         }
     }
 

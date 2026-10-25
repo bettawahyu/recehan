@@ -24,7 +24,7 @@ class PengeluaranResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedDocumentCurrencyYen;
 
-    protected static ?string $recordTitleAttribute = '"Pengeluaran"';
+    protected static ?string $recordTitleAttribute = 'nomor_transaksi';
 
     protected static ?string $navigationLabel = 'Pengeluaran';
 

@@ -73,7 +73,8 @@ return [
 
     'super_admin' => [
         'enabled' => true,
-        'name' => 'super_admin',
+        // Disamakan dengan nama role di RolesSeeder.
+        'name' => 'superadmin',
         'define_via_gate' => false,
         'intercept_gate' => 'before',
     ],
